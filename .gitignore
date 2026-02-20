@@ -1,0 +1,11 @@
+# OS files
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Sensitive files (if any)
+*.private.md
+secrets/
