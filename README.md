@@ -90,19 +90,35 @@ New features introduce themselves the first time you need them — tasks, voice 
 │   ├── goals.md                     # Goal hierarchy
 │   └── decisions.md                 # Decision register
 │
-├── skills/                          # Reusable workflows as markdown
+├── skills/                          # Reusable workflows as markdown (28 skills)
 │   ├── today.md                     # Daily briefing
-│   ├── incoming-comms.md            # Comms triage + auto-route
-│   ├── session-end.md               # End-of-session synthesis
-│   ├── debrief.md                   # Meeting/event debrief
 │   ├── task-recommend.md            # Next task recommendation
 │   ├── catchup.md                   # What changed since last session
+│   ├── weekly-review.md             # Weekly priority alignment review
+│   ├── debrief.md                   # Meeting/event debrief
+│   ├── call-prep.md                 # Pre-meeting briefing
+│   ├── incoming-comms.md            # Comms triage + auto-route
+│   ├── process-meetings.md          # Meeting transcript processing
+│   ├── session-end.md               # End-of-session synthesis
+│   ├── profile-update.md            # Self-model dreaming pass
+│   ├── your-voice.md                # Voice calibration for writing
+│   ├── voice-critic.md              # Automated voice consistency check
+│   ├── copywriting.md               # Landing page and web copy
+│   ├── landing-page-critique.md     # CRO and conversion critique
+│   ├── commit.md                    # Git commit workflow
+│   ├── new-project.md               # Spec-driven project scaffolding
+│   ├── task-create.md               # Create tasks from casual mentions
+│   ├── task-complete.md             # Archive completed tasks
+│   ├── interview-prep.md            # Interview preparation
+│   ├── relationship-building.md     # Strategic outreach
+│   ├── pre-flight.md                # Alignment check before complex work
+│   ├── friction-log.md              # Operational friction capture
+│   ├── paper-summary.md             # Research paper summarization
+│   ├── event-checklist.md           # Event lifecycle checklist
+│   ├── post-event.md                # Post-event debrief and ops
 │   ├── health.md                    # System audit
 │   ├── setup.md                     # First-run guided onboarding
 │   ├── behaviors.md                 # Detailed behavioral guidelines
-│   ├── your-voice.md                # Voice calibration for writing
-│   ├── voice-critic.md              # Automated voice consistency check
-│   ├── call-prep.md                 # Pre-meeting briefing
 │   ├── templates/
 │   │   └── people-template.md       # Template for new people files
 │   ├── references/
@@ -123,7 +139,8 @@ New features introduce themselves the first time you need them — tasks, voice 
 │   ├── settings.json                # Hook configuration
 │   └── hooks/
 │       ├── bash-guard.sh            # Blocks destructive commands
-│       └── context-sync-nudge.sh    # Nudges ripple-effect checks
+│       ├── context-sync-nudge.sh    # Nudges ripple-effect checks
+│       └── transcript-detector.sh   # Detects meeting transcripts
 │
 ├── setup/
 │   └── honcho.md                    # Optional: persistent memory with Honcho
@@ -163,10 +180,11 @@ If you find yourself giving Claude the same instructions more than twice, write 
 
 Hooks are shell scripts that run automatically before or after Claude uses a tool. They enforce rules deterministically — no amount of prompting can override a hook that blocks a command.
 
-This template ships with two hooks:
+This template ships with three hooks:
 
 - **`bash-guard.sh`** (PreToolUse) — Blocks destructive commands like `rm -rf`, `git push --force`, `git reset --hard`. Fires before every Bash call.
 - **`context-sync-nudge.sh`** (PostToolUse) — When a file in `/llm-context/` is edited, reminds Claude to check for ripple effects in other context files.
+- **`transcript-detector.sh`** (PostToolUse) — When a meeting transcript lands in the meeting-notes directory, prompts Claude to run the process-meetings skill automatically.
 
 Configuration lives in `.claude/settings.json`. To add your own hooks, create a script in `.claude/hooks/` and register it in the settings file.
 

@@ -37,22 +37,26 @@ These behaviors keep the knowledge base current. The `context-sync-nudge.sh` hoo
     - Post-meeting: "I just got off a call with X"
     Update: people files, task checklists, domain context, voice examples if a draft diverged. Report in a one-liner.
 
+## Verification
+
+13. **Evidence before claims** — Before reporting work as done (task closed, draft written, context updated, file created), verify the artifact exists and is correct. Don't claim completion from memory -- check the output.
+
 ## Task Management
 
-13. **Create tasks proactively** — When something actionable is mentioned, offer to create a task file.
-14. **Auto-close completed tasks** — When work clearly completes an open task, archive it and report. Only ask for ambiguous cases.
+14. **Create tasks proactively** — When something actionable is mentioned, offer to create a task file.
+15. **Auto-close completed tasks** — When work clearly completes an open task, archive it and report. Only ask for ambiguous cases.
 
 ## Decision Logging
 
-15. **Log decisions automatically** — When a domain-level decision is made during any session (strategic direction, pricing, approach chosen, option rejected), add it to that domain's `decisions.md` file. If no `decisions.md` exists in the relevant `/llm-context/` subfolder, create one. Format: date, decision, alternatives considered, reasoning. Every settled decision gets logged so future sessions don't re-litigate it.
+16. **Log decisions automatically** — When a domain-level decision is made during any session (strategic direction, pricing, approach chosen, option rejected), add it to that domain's `decisions.md` file. If no `decisions.md` exists in the relevant `/llm-context/` subfolder, create one. Format: date, decision, alternatives considered, reasoning. Every settled decision gets logged so future sessions don't re-litigate it.
 
-16. **Check decisions before proposing** — Before recommending an approach in any domain, check if `decisions.md` exists in that domain folder and review it. If your recommendation contradicts a logged decision, flag the contradiction explicitly.
+17. **Check decisions before proposing** — Before recommending an approach in any domain, check if `decisions.md` exists in that domain folder and review it. If your recommendation contradicts a logged decision, flag the contradiction explicitly.
 
 ## Communications
 
-17. **Triage AND route** — When raw comms are pasted without a question, run `/skills/incoming-comms.md`: identify sender, load context, assess, advise, draft response, THEN update all affected files. Don't ask "should I save?" — just do it.
-18. **Auto-create people files** — When a new contact is mentioned, create a profile immediately from `/skills/templates/people-template.md`. Don't ask — create and notify.
-19. **Draft perspective** — Confirm who is sending. Don't assume the sender unless explicitly stated.
+18. **Triage AND route** — When raw comms are pasted without a question, run `/skills/incoming-comms.md`: identify sender, load context, assess, advise, draft response, THEN update all affected files. Don't ask "should I save?" — just do it.
+19. **Auto-create people files** — When a new contact is mentioned, create a profile immediately from `/skills/templates/people-template.md`. Don't ask — create and notify.
+20. **Draft perspective** — Confirm who is sending. Don't assume the sender unless explicitly stated.
 
 ## Proactive Nudges
 
@@ -103,3 +107,7 @@ These fire based on system state, not memory. Check the conditions below during 
 - **After the action, not before.** The user just experienced it working — the explanation confirms what they saw.
 - **Once per feature.** If you've already explained a capability in this session, don't repeat it.
 - **Never interrupt flow.** The explanation is a footnote, not a detour. Immediately continue with whatever the user needs next.
+
+## Dreaming Pass
+
+Only run `/skills/session-end.md` when a session had significant emotional, strategic, or identity-level content. Skip for operational sessions. The dreaming pass synthesizes cross-session patterns -- interpretive work that can't happen in real-time. Also runs as part of `/review`.

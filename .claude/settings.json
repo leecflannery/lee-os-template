@@ -20,6 +20,11 @@
             "type": "command",
             "command": ".claude/hooks/context-sync-nudge.sh",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/transcript-detector.sh",
+            "timeout": 5
           }
         ]
       },
@@ -29,6 +34,16 @@
           {
             "type": "command",
             "command": ".claude/hooks/context-sync-nudge.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/transcript-detector.sh",
             "timeout": 5
           }
         ]

@@ -1,3 +1,8 @@
+---
+name: today
+description: Daily briefing that surfaces priorities, due tasks, overdue items, and stale context. Use when you say '/today' or 'What's on for today?'
+---
+
 # /today
 
 Generate your daily briefing.

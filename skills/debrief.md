@@ -1,3 +1,8 @@
+---
+name: debrief
+description: Post-meeting or post-event structured capture. Extracts decisions, action items, and people context, then auto-routes updates to all affected files.
+---
+
 # Debrief
 
 After a conversation, meeting, or event, capture structured notes and update context.

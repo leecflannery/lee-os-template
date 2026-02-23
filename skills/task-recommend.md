@@ -1,3 +1,8 @@
+---
+name: task-recommend
+description: Recommends the next best task based on goals, priorities, due dates, and energy level. Use when you say '/next' or 'What should I work on?'
+---
+
 # Task Recommend
 
 Suggest the next best task based on current goals and priorities.

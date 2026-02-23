@@ -1,3 +1,8 @@
+---
+name: session-end
+description: End-of-session synthesis that extracts patterns, identity shifts, and cross-domain connections that only emerge from looking at the full session. Only for substantive sessions.
+---
+
 # Skill: Session End (Dreaming Pass)
 
 The "dreaming pass" is borrowed from how the brain consolidates during sleep — replaying the day's experiences to extract patterns, strengthen connections, and update your mental models. This skill does the same thing: it replays the session to find insights that only emerge from looking at the whole picture, not individual moments.
