@@ -51,13 +51,19 @@ git clone https://github.com/leecflannery/lee-os-template.git my-os
 cd my-os
 ```
 
-### 2. Start Claude Code
+### 2. Start Claude Code and run setup
 
 ```bash
 claude
 ```
 
-That's it. Claude detects the fresh install and walks you through setup — about 3 minutes. It'll ask who you are, what you're working on, and who you work with, then show you the system working on your real context. No manual file editing required.
+Then kick off the guided setup:
+
+```
+> /setup
+```
+
+This walks you through onboarding in about 3 minutes — it'll ask who you are, what you're working on, and who you work with, then show you the system working on your real context. No manual file editing required.
 
 ### 3. Import your chat history (optional)
 
