@@ -6,6 +6,24 @@
 *.swp
 *.swo
 
+# Python
+__pycache__/
+*.pyc
+
+# Generated output / intermediate files
+*.progress
+scripts/*.json
+
+# Data files
+data/
+*.csv
+*.parquet
+*.pkl
+*.joblib
+
+# Jupyter
+.ipynb_checkpoints/
+
 # Sensitive files (if any)
 *.private.md
 secrets/
