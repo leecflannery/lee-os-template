@@ -51,15 +51,94 @@ git clone https://github.com/leecflannery/lee-os-template.git my-os
 cd my-os
 ```
 
-### 2. Start Claude Code
+### 2. Start Claude Code and run setup
 
 ```bash
 claude
 ```
 
-That's it. Claude detects the fresh install and walks you through setup — about 3 minutes. It'll ask who you are, what you're working on, and who you work with, then show you the system working on your real context. No manual file editing required.
+Then kick off the guided setup:
 
-### 3. Use it
+```
+> /setup
+```
+
+This walks you through onboarding in about 3 minutes — it'll ask who you are, what you're working on, and who you work with, then show you the system working on your real context. No manual file editing required.
+
+### 3. Import your chat history (optional)
+
+Most people accumulate hundreds of conversations across LLM chat interfaces — project work, interview prep, learning, personal reflections — but they're trapped in a flat, unsearchable list. This step extracts that history, classifies each conversation by topic, and organizes it into searchable project directories inside your OS. It gives Claude Code rich context about your past work from day one.
+
+#### Export your chats
+
+- **Claude.ai:** Go to [claude.ai/settings](https://claude.ai/settings) → request a data export → you'll receive a zip file containing:
+
+  | File | Description |
+  |------|-------------|
+  | `conversations.json` | All conversations — the main file to process |
+  | `projects.json` | Project definitions with metadata (description, prompt template, attached docs) |
+  | `users.json` | Account info (not needed for import) |
+  | `memories.json` | Saved memories / preferences (optional — can be imported separately) |
+  | `data-*.zip` | Raw data bundle (not needed for import) |
+
+  **Note:** Claude.ai exports do NOT link conversations to projects — classification is inferred from content.
+
+- **ChatGPT:** Go to [Settings → Data controls → Export data](https://chat.openai.com/#settings/DataControls) → you'll receive a zip with `conversations.json` (structure differs from Claude — each conversation has `"title"`, `"mapping"` with nested message nodes, and `"conversation_id"`).
+
+- **Other LLMs:** Any export works as long as you can extract: a conversation title, the first 1-2 human messages, and a date/message count.
+
+Unzip the export and place the contents in `llm-context/chats/`.
+
+#### Set up Python and an API key
+
+The import uses a Python script with the Anthropic API to classify your conversations. You'll need:
+
+1. **Python 3** with a virtual environment:
+   ```bash
+   python3 -m venv .venv && source .venv/bin/activate
+   pip install anthropic
+   ```
+
+2. **An Anthropic API key** — create one at [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys) and set it:
+   ```bash
+   export ANTHROPIC_API_KEY=sk-ant-...
+   ```
+
+The classification uses Haiku, so cost is minimal (~$0.05–0.10 for hundreds of conversations).
+
+#### Run the import
+
+```
+> Import my chats
+```
+
+Claude walks you through the full workflow defined in `skills/import-chats.md`. Here's what happens:
+
+1. **Heuristic matching (free, instant)** — keyword rules match conversations to known projects by name (companies, courses, people). Typically catches ~15% of conversations.
+
+2. **LLM classification (cheap, handles ambiguity)** — remaining conversations are classified by sending the title + first messages to Haiku. Each gets a category and confidence score.
+
+3. **Manual review** — conversations with low confidence are surfaced in a table for you to confirm or reassign. Usually only a handful need attention.
+
+#### What you get
+
+Each category becomes a project directory:
+
+```
+category-name/
+├── index.md              # Project name, description, prompt template
+├── conversations/        # Individual conversation files
+│   ├── 2026-01-15-topic-slug.md
+│   └── 2026-01-20-another-topic.md
+└── docs/                 # Attached documents (if any)
+    └── document.md
+```
+
+Categories are purpose-driven — not just by topic, but by *why you had the conversation*. Common top-level categories include `course-material/`, `job-interviews/`, `personal/` (with sub-categories like health, learning, self-growth), and `portfolio/`. Sub-categories emerge naturally from your data.
+
+The import also creates people files for individuals referenced across your conversations and updates `CLAUDE.md` routing so Claude knows where to find everything.
+
+### 4. Use it
 
 After setup, just talk about what you're working on. The system learns new capabilities as you use them:
 
@@ -90,7 +169,7 @@ New features introduce themselves the first time you need them — tasks, voice 
 │   ├── goals.md                     # Goal hierarchy
 │   └── decisions.md                 # Decision register
 │
-├── skills/                          # Reusable workflows as markdown (28 skills)
+├── skills/                          # Reusable workflows as markdown (29 skills)
 │   ├── today.md                     # Daily briefing
 │   ├── task-recommend.md            # Next task recommendation
 │   ├── catchup.md                   # What changed since last session
@@ -117,6 +196,7 @@ New features introduce themselves the first time you need them — tasks, voice 
 │   ├── event-checklist.md           # Event lifecycle checklist
 │   ├── post-event.md                # Post-event debrief and ops
 │   ├── health.md                    # System audit
+│   ├── import-chats.md              # Import LLM chat history
 │   ├── setup.md                     # First-run guided onboarding
 │   ├── behaviors.md                 # Detailed behavioral guidelines
 │   ├── templates/

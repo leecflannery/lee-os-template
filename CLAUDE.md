@@ -117,6 +117,7 @@ Reusable workflows live in `/skills/`. When you ask for something that matches a
 | `/skills/event-checklist.md` | `/event-checklist`, "Set up a checklist for [event]" |
 | `/skills/post-event.md` | `/post-event`, "How did the event go?" |
 | `/skills/health.md` | "System health", "How's the OS?", `/health` |
+| `/skills/import-chats.md` | "Import my chats", "Organize my chat history", `/import-chats` |
 | `/skills/setup.md` | Auto-triggered on first run when `[Your name]` placeholder detected |
 
 ## People File Template
