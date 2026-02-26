@@ -10,10 +10,11 @@ import json
 import os
 import re
 import datetime
+from pathlib import Path
 
-BASE = "/Users/emilyhk/ehk-os"
-JSON_DIR = f"{BASE}/llm-context/chats/openai/online_activity/conversations/conversations_jsons"
-CLASSIFICATION_FILE = f"{BASE}/scripts/chatgpt_classification_results.json"
+BASE_DIR = Path(__file__).resolve().parent.parent
+JSON_DIR = BASE_DIR / "llm-context" / "chats" / "openai" / "online_activity" / "conversations" / "conversations_jsons"
+CLASSIFICATION_FILE = BASE_DIR / "scripts" / "chatgpt_classification_results.json"
 
 
 def slugify(title):
@@ -116,7 +117,7 @@ def main():
         slug = slugify(title)
 
         # Build target path
-        target_dir = os.path.join(BASE, category, "conversations")
+        target_dir = os.path.join(BASE_DIR, category, "conversations")
         os.makedirs(target_dir, exist_ok=True)
 
         filename = f"{date_str}-{slug}-chatgpt.md"

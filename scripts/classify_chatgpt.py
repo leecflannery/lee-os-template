@@ -10,12 +10,13 @@ import os
 import re
 import time
 import datetime
+from pathlib import Path
 import anthropic
 
 # ── Paths ──────────────────────────────────────────────────────────
-BASE = "/Users/emilyhk/ehk-os"
-JSON_DIR = f"{BASE}/llm-context/chats/openai/online_activity/conversations/conversations_jsons"
-OUTPUT_FILE = f"{BASE}/scripts/chatgpt_classification_results.json"
+BASE_DIR = Path(__file__).resolve().parent.parent
+JSON_DIR = BASE_DIR / "llm-context" / "chats" / "openai" / "online_activity" / "conversations" / "conversations_jsons"
+OUTPUT_FILE = BASE_DIR / "scripts" / "chatgpt_classification_results.json"
 
 # ── Categories ─────────────────────────────────────────────────────
 CATEGORIES = {
